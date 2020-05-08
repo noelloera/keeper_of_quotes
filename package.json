@@ -5,6 +5,7 @@
   "main": "user-visits-root.js",
   "dependencies": {},
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^7.1.2"
   },
   "scripts": {
