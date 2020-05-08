@@ -1,0 +1,23 @@
+{
+  "name": "quote_keeper",
+  "version": "1.0.0",
+  "description": "TDD application that stores quotes for users in a Mongo DB using CRUD server",
+  "main": "user-visits-root.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noelloera/quote_keeper.git"
+  },
+  "author": "Noel Loera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noelloera/quote_keeper/issues"
+  },
+  "homepage": "https://github.com/noelloera/quote_keeper#readme"
+}
