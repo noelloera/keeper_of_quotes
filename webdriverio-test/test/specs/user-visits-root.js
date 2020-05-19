@@ -1,6 +1,15 @@
 const {assert} = require('chai');
-const root = 
 
+
+describe('webdriver.io page', () => {
+    it('should have the right title', () => {
+        browser.url('https://webdriver.io')
+        const title = browser.getTitle()
+        expect(browser).toHaveTitle('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js');
+    })
+})
+
+/*
 //If this does not work try checking the WebDriver IO CLI
 
 //This is the feature testing when a user will visit the root
@@ -32,3 +41,4 @@ describe("User Enters Root",()=>{
         })
     })
 })
+*/
