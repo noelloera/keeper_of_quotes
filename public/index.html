@@ -6,7 +6,7 @@
     <title>Root Page</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data" action="/">
+    <form id = "form" method="post" enctype="multipart/form-data" action="/">
         <label>Enter a Quote: </label>
         <br>
         <input type="text" id="quote" name="quote"></input>
@@ -16,7 +16,26 @@
         <input type="text" id="source" name="source"></input>
         <br>
         <button id="submit" name="submit">SUBMIT</button>
-        <textarea name="quotes" id="quotes"></textarea>
     </form>
+    <br>
+    <textarea name="quotes" id="quotes"></textarea>
+    <script>
+        //Since the elements are assigned outside the event no values are assigned
+        const quote = document.getElementById("quote")
+        const author = document.getElementById("author")
+        const source = document.getElementById("source")
+        const form = document.getElementById("form")
+        const allQuotes = document.getElementById("quotes");
+
+        form.onsubmit = () =>{
+            const fullQuote = [quote.value, author.value, source.value];
+            let entireQuote = ""
+            for(var i=0; i<fullQuote.length; i++){
+                entireQuote += fullQuote[i]+ "";
+            }
+            allQuotes.value = entireQuote;
+            console.log(entireQuote);
+        }
+    </script>
 </body>
 </html>
