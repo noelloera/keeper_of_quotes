@@ -27,15 +27,33 @@
         const form = document.getElementById("form")
         const allQuotes = document.getElementById("quotes");
 
-        form.onsubmit = () =>{
-            const fullQuote = [quote.value, author.value, source.value];
-            let entireQuote = ""
-            for(var i=0; i<fullQuote.length; i++){
-                entireQuote += fullQuote[i]+ "";
+
+
+        
+        form.addEventListener
+        form.addEventListener('submit', e =>{
+            //You can check if the variables are not falsy
+            e.preventDefault();
+            if(quote && author && source){
+                const fullQuote = {
+                    quote: quote.value, 
+                    author: author.value, 
+                    source: source.value}
+                const fullQuoteArray = Object.values(fullQuote);
+                for(var i=0; i<fullQuoteArray.length; i++){
+                    console.log(fullQuoteArray[i]);
             }
-            allQuotes.value = entireQuote;
-            console.log(entireQuote);
-        }
+                //Since the object with the values is already created, you can make a post request
+                //XMLHttpRequest
+                let request = new XMLHttpRequest();
+                request.open("POST", "http://localhost:4001/", true)
+                //This is required if the HTTP call is a XML POST
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send(`quote=${fullQuote.quote}&author=${fullQuote.author}&source=${fullQuote.source}`);
+
+
+            }
+        })
     </script>
 </body>
 </html>
