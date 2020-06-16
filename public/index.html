@@ -18,7 +18,7 @@
         <button id="submit" name="submit">SUBMIT</button>
     </form>
     <br>
-    <textarea name="quotes" id="quotes"></textarea>
+    <p name="quotes" id="quotes"></p>
     <script>
         //Since the elements are assigned outside the event no values are assigned
         const quote = document.getElementById("quote")
@@ -27,18 +27,30 @@
         const form = document.getElementById("form")
         const allQuotes = document.getElementById("quotes");
 
-
-
         
-        form.addEventListener
+        let request = new XMLHttpRequest();
+        request.open("GET", "http://localhost:4001/quotes", true)
+        request.send();
+        request.onload = () =>{
+        console.log(request)
+                if(request.status === 200){
+                    quotes = request.response
+                }
+                else console.log(error)
+         }
+
+        allQuotes.innerHTML = quotes;
+
+        //This is the event listener function that runs when form submits
         form.addEventListener('submit', e =>{
-            //You can check if the variables are not falsy
             e.preventDefault();
+            //Statement checks if the input values are truthy
             if(quote && author && source){
                 const fullQuote = {
                     quote: quote.value, 
                     author: author.value, 
                     source: source.value}
+            //Checls the inputs are being saved
                 const fullQuoteArray = Object.values(fullQuote);
                 for(var i=0; i<fullQuoteArray.length; i++){
                     console.log(fullQuoteArray[i]);
@@ -50,10 +62,11 @@
                 //This is required if the HTTP call is a XML POST
                 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 request.send(`quote=${fullQuote.quote}&author=${fullQuote.author}&source=${fullQuote.source}`);
-
-
-            }
-        })
+                /*request.onload = () =>{
+                    if(request.status === 200)
+            
+            }*/
+        }})
     </script>
 </body>
 </html>
