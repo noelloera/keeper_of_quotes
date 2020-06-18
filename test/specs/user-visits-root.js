@@ -13,7 +13,7 @@ describe('webdriver.io page', () => {
 //If this does not work try checking the WebDriver IO CLI
 
 //This is the feature testing when a user will visit the root
-describe("User Enters Root",()=>{
+describe("User Enters Root", ()=>{
 
     //This will test functionality when a Quote is submitted
     describe("User Posts a Quote", ()=>{
@@ -44,7 +44,7 @@ describe("User Enters Root",()=>{
             const quotes = allQuotesElem.getText();
             assert.include(quotes, quote);
             assert.include(quotes, author);
-            assert.include(quotes, source);
+            assert.include(quotes, source);*/
         })
     })
 })

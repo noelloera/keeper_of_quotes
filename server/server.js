@@ -8,14 +8,14 @@ const allQuotes = [];
 
 const PORT = process.env.PORT || 4001;
 
-//bodyParser for app/x-urlencoded
-let urlencodedParser = bodyParser.urlencoded({ extended: false })
+//middleware bodyParser for app/x-urlencoded requests
+app.use(bodyParser.urlencoded({ extended: false }));
 
-//boodyParser for app/json
-let jsonParser = bodyParser.json();
+//middleware bodyParser for app/json requests
+app.use(bodyParser.json());
 
 //Middleware for setting static directories
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/',(req, res)=>{
     res.sendFile(path.join(__dirname,'../public/index.html'))
@@ -26,7 +26,7 @@ app.get('/quotes',(req,res)=>{
     res.send(allQuotes).status(200)
 })
 
-app.post('/', urlencodedParser, (req, res)=>{
+app.post('/', (req, res)=>{
     //Request variables//
     const quote = req.body.quote;
     const author = req.body.author;
