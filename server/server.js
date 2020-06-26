@@ -4,7 +4,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 
-const allQuotes = [];
+const allQuotes = [
+    {quote: "First Quote",
+    author: "First Author",
+    source: "First Source"}
+];
 
 const PORT = process.env.PORT || 4001;
 
