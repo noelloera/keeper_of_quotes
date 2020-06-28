@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Middleware for setting static directories
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'../public')));
 
 app.get('/',(req, res)=>{
-    res.sendFile(path.join(__dirname,'../public/index.html'))
+    res.sendFile(path.join(__dirname,'index.html'))
     res.status(200);
 })
 
@@ -38,8 +38,7 @@ app.post('/', (req, res)=>{
     if(quote && author && source){
         console.log(`A request of: ${quote}, by ${author}, from ${source} was recieved...`)
         allQuotes.push(req.body);
-        res.status(201).send();
-        res.redirect('/').status(201);
+        res.status(201).send(allQuotes);
     }
 })
 
