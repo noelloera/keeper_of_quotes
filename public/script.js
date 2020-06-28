@@ -1,43 +1,50 @@
 //Since the elements are assigned outside the event no values are assigned
-const quote = document.getElementById("quote")
-const author = document.getElementById("author")
-const source = document.getElementById("source")
-const form = document.getElementById("form")
+const quote = document.getElementById("quote");
+const author = document.getElementById("author");
+const source = document.getElementById("source");
+const form = document.getElementById("form");
 const allQuotes = document.getElementById("quotes");
 
-console.log("inside the js");
+//Async function that renders quotes
+async function getQuotes(){
+    let get = await fetch("http://localhost:4001/quotes")
+    let response = await get.json();
+    let quotes = "";
+    response.forEach(obj =>{
+        quotes += `\n${obj.quote} \n${obj.author} \n${obj.source}\n`
+    })
+    allQuotes.innerText = quotes;
+    console.log(quotes);
+}
 
-fetch('http://localhost:4001/quotes')
-.then(response =>{
-    response.json();
-})
-.catch(error=>{
-    throw error;
-})
+//Runs the async functions
+async function run(){
+    await getQuotes();
+}
+//Runs the asynchronous queue
+run();
 
-//This is the event listener function that runs when form submits
-/*form.addEventListener('submit', e =>{
-    e.preventDefault();
-    //Statement checks if the input values are truthy
-    if(quote && author && source){
-        const fullQuote = {
-            quote: quote.value, 
-            author: author.value, 
-            source: source.value}
-    //Checls the inputs are being saved
-        const fullQuoteArray = Object.values(fullQuote);
-        for(var i=0; i<fullQuoteArray.length; i++){
-            console.log(fullQuoteArray[i]);
-    }
-        //Since the object with the values is already created, you can make a post request
-        //XMLHttpRequest
-        let request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:4001/", true)
-        //This is required if the HTTP call is a XML POST
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send(`quote=${fullQuote.quote}&author=${fullQuote.author}&source=${fullQuote.source}`);
-        /*request.onload = () =>{
-            if(request.status === 200)
-    
-    }
-}})*/
+//This the submit form eventListener
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (quote && author && source) {
+    let fullQuote = {
+      quote: quote.value,
+      author: author.value,
+      source: source.value,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fullQuote),
+    };
+    const raw = await fetch("http://localhost:4001/", options);
+    const content = await raw.json();
+    window.location = "http://localhost:4001/";
+    console.log(content);
+  }
+});
+
