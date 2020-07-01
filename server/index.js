@@ -3,10 +3,11 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-
+const shortid = require('shortid')
 
 const allQuotes = [
     {
+        id : shortid.generate(),
         quote: "First Quote",
         author: "First Author",
         source: "First Source"
@@ -16,6 +17,7 @@ const allQuotes = [
 //Quote class constructor
 class Quote {
     constructor(quote, author, source) {
+        this.id = shortid.generate(),
         this.quote = quote;
         this.author = author;
         this.source = source;
