@@ -7,7 +7,7 @@ const shortid = require('shortid')
 
 const allQuotes = [
     {
-        id : shortid.generate(),
+        id: shortid.generate(),
         quote: "First Quote",
         author: "First Author",
         source: "First Source"
@@ -18,7 +18,7 @@ const allQuotes = [
 class Quote {
     constructor(quote, author, source) {
         this.id = shortid.generate(),
-        this.quote = quote;
+            this.quote = quote;
         this.author = author;
         this.source = source;
     }
@@ -36,11 +36,11 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
 //Middleware for setting static directories
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static('public'));
 
 //Will send the Homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
+    res.render(path.join(__dirname, 'index.html'))
     res.status(200);
 })
 

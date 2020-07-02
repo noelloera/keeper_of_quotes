@@ -87,16 +87,15 @@ describe("/", () => {
                 //The assert will verify the GET 200 status
                 assert.equal(response.status, 200);
               })
-              .catch(error=>{
+              .catch(error => {
                 throw error;
               })
-              //The assert will verify the POST 201 status
-              assert.equal(response.status, 201);
+            //The assert will verify the POST 201 status
+            assert.equal(response.status, 201);
           })
           .catch((error) => {
             throw error;
           })
-
       })
     });
   });
