@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const {mongooseConnect, mongooseDisconnect} = require('../database/database.js');
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.ObjectId; 
+const ObjectId = mongoose.Schema.Types.ObjectId; 
 
 
 //Provides the Schema skeleton
 const quoteSchema = new Schema({
-    id: ObjectId,
+    _id: ObjectId,
     quote: String,
     author: String,
     source: String
@@ -16,7 +15,7 @@ const quoteSchema = new Schema({
 const Quote = mongoose.model('Quote', quoteSchema);
 
 module.exports = Quote;
-
+/*
 const allQuotes = [
     {
         id: shortid.generate(),
@@ -34,4 +33,4 @@ class Quote {
         this.author = author;
         this.source = source;
     }
-}
+}*/

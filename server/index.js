@@ -3,26 +3,10 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const shortid = require('shortid')
+const Quote = require('../models/quote');
+const mongoose = require('mongoose');
+const { connect, disconnect } = require('../database/database');
 
-const allQuotes = [
-    {
-        id: shortid.generate(),
-        quote: "First Quote",
-        author: "First Author",
-        source: "First Source"
-    }
-];
-
-//Quote class constructor
-class Quote {
-    constructor(quote, author, source) {
-        this.id = shortid.generate(),
-            this.quote = quote;
-        this.author = author;
-        this.source = source;
-    }
-}
 
 const PORT = process.env.PORT || 4001;
 
@@ -38,16 +22,36 @@ app.use(morgan('tiny'));
 //Middleware for setting static directories
 app.use(express.static('public'));
 
+connect();
+
+
 //Will send the Homepage
 app.get('/', (req, res) => {
     res.render(path.join(__dirname, 'index.html'))
     res.status(200);
+
 })
 
-
+//Retrieves all the quotes
 app.get('/quotes', (req, res) => {
-    res.send(allQuotes).status(200)
+    var query = Quote.find();
+    res.send(query).status(200)
 })
+
+app.get("/:quoteId", (req, res, next)=>{
+    const id = req.params.quoteId;
+    Quote.findById(id)
+    .exec()
+    .then(result=>{
+        console.log(result);
+        res.status(200).send(result);
+    })
+    .catch(error=>{
+        console.log(error)
+        res.status(500).send({error:error})
+    })
+})
+
 
 app.post('/quotes', (req, res) => {
     //Request variables//
@@ -57,12 +61,24 @@ app.post('/quotes', (req, res) => {
     //Checks if the inputs include values
     if (quote && author && source) {
         console.log(`A request of: ${quote}, by ${author}, from ${source} was recieved...`)
-        const newQuote = new Quote(quote, author, source)
+        const newQuote = new Quote({
+            _id: new mongoose.Types.ObjectId(),
+            quote: quote,
+            author: author,
+            source: source
+        })
+        newQuote.save()
+        .then(result=>{
+            console.log(result)
+        })
+        .catch(error=>{
+            throw error;
+        })
         console.log(newQuote);
-        allQuotes.push(newQuote);
         res.status(201).send(newQuote);
     } else {
-        res.status(422).send();
+        console.log("Not a valid submition")
+        res.status(422).send({message:"All fields must contain values"});
     }
 })
 
