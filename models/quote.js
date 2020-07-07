@@ -15,22 +15,3 @@ const quoteSchema = new Schema({
 const Quote = mongoose.model('Quote', quoteSchema);
 
 module.exports = Quote;
-/*
-const allQuotes = [
-    {
-        id: shortid.generate(),
-        quote: "First Quote",
-        author: "First Author",
-        source: "First Source"
-    }
-];
-
-//Quote class constructor
-class Quote {
-    constructor(quote, author, source) {
-        this.id = shortid.generate(),
-            this.quote = quote;
-        this.author = author;
-        this.source = source;
-    }
-}*/

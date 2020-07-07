@@ -22,6 +22,7 @@ app.use(morgan('tiny'));
 //Middleware for setting static directories
 app.use(express.static('public'));
 
+//Establishes connection to the database
 connect();
 
 
@@ -34,17 +35,36 @@ app.get('/', (req, res) => {
 
 //Retrieves all the quotes
 app.get('/quotes', (req, res) => {
-    var query = Quote.find();
-    res.send(query).status(200)
+    Quote.find()
+    .exec()
+    .then(response=>{
+        res.status(200).send(response);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).send({error:error})
+    })
 })
 
-app.get("/:quoteId", (req, res, next)=>{
+//Allows for a query to DB by quoteID
+app.get("/quotes/:quoteId", (req, res, next)=>{
     const id = req.params.quoteId;
+    //Will sort through the DB to find object by id
     Quote.findById(id)
     .exec()
     .then(result=>{
-        console.log(result);
-        res.status(200).send(result);
+        if(result){
+            res.status(200).send({
+                message: "Successfully found Object",
+                existingObject: result
+            });
+        }
+        else{
+            res.status(404).send({
+                warning: "Object not Found",
+                message: "Not a valid ID"
+            })
+        }
     })
     .catch(error=>{
         console.log(error)
@@ -52,7 +72,7 @@ app.get("/:quoteId", (req, res, next)=>{
     })
 })
 
-
+//POST Request to quotes
 app.post('/quotes', (req, res) => {
     //Request variables//
     const quote = req.body.quote;
@@ -67,18 +87,22 @@ app.post('/quotes', (req, res) => {
             author: author,
             source: source
         })
+        //Attempts to save the quote object
         newQuote.save()
         .then(result=>{
             console.log(result)
+            res.status(201).send({
+                message: "Succesfully Created Object",
+                createdObject: newQuote
+            });
         })
         .catch(error=>{
             throw error;
         })
-        console.log(newQuote);
-        res.status(201).send(newQuote);
     } else {
-        console.log("Not a valid submition")
-        res.status(422).send({message:"All fields must contain values"});
+        res.status(422).send({
+            warning: "Not a valid submission",
+            message: "All fields must contain values"});
     }
 })
 
