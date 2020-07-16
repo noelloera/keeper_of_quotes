@@ -6,6 +6,8 @@ const morgan = require("morgan");
 const Quote = require("./models/quote");
 const mongoose = require("mongoose");
 const { connect, disconnect } = require("./database/database");
+const { resolveSoa } = require("dns");
+const { isNullOrUndefined } = require("util");
 
 const PORT = process.env.PORT || 4001;
 
@@ -22,9 +24,9 @@ app.use(morgan("tiny"));
 app.use(express.static("public"));
 
 //Establishes connection to the database
-//connect();
+connect();
 
-//Will send the Homepage
+//Will send the Root
 app.get("/", (req, res) => {
   res.render(path.join(__dirname, "index.html"));
   res.status(200);
@@ -57,8 +59,7 @@ app.get("/quotes/:quoteId", (req, res, next) => {
         });
       } else {
         res.status(404).send({
-          warning: "Object not Found",
-          message: "Not a valid ID",
+          message: "Cannot retrieve invalid ID",
         });
       }
     })
@@ -66,6 +67,28 @@ app.get("/quotes/:quoteId", (req, res, next) => {
       console.log(error);
       res.status(500).send({ error: error });
     });
+});
+
+app.delete("/quotes/:quoteId", (req, res, next) => {
+  const id = req.params.id;
+  if (id !== null && id !== undefined) {
+    Quote.findByIdAndRemove(id, (object) => {
+      if (object.id === id) {
+        res.status(202).send({
+          message: "Successfully deleted Object",
+          id: id,
+        });
+      } else {
+        res.status(404).send({
+          message: "Cannot retrieve invalid ID",
+        });
+      }
+    });
+  } else {
+    res.status(404).send({
+      message: "Cannot retrieve invalid ID",
+    });
+  }
 });
 
 //POST Request to quotes
