@@ -76,7 +76,7 @@ app.delete("/quotes/:quoteId", (req, res, next) => {
       if (object.id === id) {
         res.status(202).send({
           message: "Successfully deleted Object",
-          id: id,
+          //id: id,
         });
       } else {
         res.status(404).send({
