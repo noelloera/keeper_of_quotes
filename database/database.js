@@ -10,6 +10,7 @@ const dbUrl =
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 };
 
 //Modular database connection functions 

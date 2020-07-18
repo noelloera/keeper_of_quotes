@@ -6,8 +6,6 @@ const morgan = require("morgan");
 const Quote = require("./models/quote");
 const mongoose = require("mongoose");
 const { connect, disconnect } = require("./database/database");
-const { resolveSoa } = require("dns");
-const { isNullOrUndefined } = require("util");
 
 const PORT = process.env.PORT || 4001;
 
@@ -71,24 +69,19 @@ app.get("/quotes/:quoteId", (req, res, next) => {
 
 app.delete("/quotes/:quoteId", (req, res, next) => {
   const id = req.params.id;
-  if (id !== null && id !== undefined) {
-    Quote.findByIdAndRemove(id, (object) => {
-      if (object.id === id) {
-        res.status(202).send({
-          message: "Successfully deleted Object",
-          //id: id,
-        });
-      } else {
-        res.status(404).send({
-          message: "Cannot retrieve invalid ID",
-        });
-      }
-    });
-  } else {
-    res.status(404).send({
-      message: "Cannot retrieve invalid ID",
-    });
-  }
+  Quote.findByIdAndRemove(id, (error, quote) => {
+    if (error) {
+      console.log(error)
+      res.status(404).send({
+        message: "Cannot retrieve invalid ID",
+      })
+    } else {
+      res.status(202).send({
+        message: "Successfully deleted Object",
+        quoteDeleted: id,
+      });
+    }
+  });
 });
 
 //POST Request to quotes
