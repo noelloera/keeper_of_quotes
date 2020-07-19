@@ -31,9 +31,9 @@ describe("/", () => {
           .request("http://localhost:4001")
           .get("/quotes")
           .then((response) => {
-            const body = response.body;
+            const allQuotes = response.body.allObjects;
             let quotes = "";
-            body.forEach((obj) => {
+            allQuotes.forEach((obj) => {
               quotes += `${obj.quote} ${obj.author} ${obj.source}`;
             });
             assert.include(quotes, "Testing");
@@ -47,7 +47,7 @@ describe("/", () => {
       });
     });
     //This function needs to be asynchronous because it will perform actions in the browser
-    /*describe("POST", () => {
+    describe("POST", () => {
       it("Will make POST request to server, and check new quote exists", async () => {
         //Imitation input variables containing strings for POST
         const quote = {
@@ -74,10 +74,10 @@ describe("/", () => {
               .get("/quotes")
               //The response will be converted to a string
               .then((response) => {
-                const quotes = response.body;
+                const allQuotes = response.body.allObjects;
                 let quotesString = "";
                 //Creates a temp string of all quotes
-                quotes.forEach((obj) => {
+                allQuotes.forEach((obj) => {
                   quotesString += `${obj.quote} ${obj.author} ${obj.source}`;
                 });
                 //verifies if any of the objects include the object type
@@ -94,7 +94,7 @@ describe("/", () => {
             throw error;
           });
       });
-    });*/
+    });
   });
 
   describe("GET:id", () => {
@@ -105,8 +105,8 @@ describe("/", () => {
         .request("http://localhost:4001")
         .get("/quotes")
         .then((response) => {
-          const quotes = response.body;
-          quotes.forEach((obj) => {
+          const allQuotes = response.body.allObjects;
+          allQuotes.forEach((obj) => {
             if (obj.quote === quote) {
               objId = obj._id;
               assert.equal(obj._id, objId);
@@ -131,23 +131,20 @@ describe("/", () => {
     });
   });
 
-
-
-
   describe("DELETE:id", () => {
-    it("Should obtain id and delete it", async () => {
+    it("Should obtain quote id and delete it", async () => {
       const quote = "Test Delete";
       let objId = "";
       await chai
         .request("http://localhost:4001")
         .get("/quotes")
         .then((response) => {
-          const quotes = response.body;
-          quotes.forEach((obj) => {
+          const allQuotes = response.body.allObjects;
+          allQuotes.forEach((obj) => {
             if (obj.quote === quote) {
               objId = obj._id;
               assert.equal(obj._id, objId);
-              console.log(objId)
+              console.log(objId);
             }
           });
         })
@@ -159,15 +156,50 @@ describe("/", () => {
         .request("http://localhost:4001")
         .delete("/quotes/" + objId)
         .then((response) => {
-          console.log(response.body)
-          const deletedID = response.body.id;
+          console.log(response.body);
+          const deletedID = response.body.deletedObject._id;
           const deletedMessage = response.body.message;
-          const message = "Successfully deleted Object"
+          const message = "Successfully deleted Object";
           assert.strictEqual(message, deletedMessage);
-          assert.equal(deletedID, objId)
+          assert.equal(deletedID, objId);
         })
         .catch((error) => {
           throw error;
+        });
+    });
+  });
+  describe("PUT:id", () => {
+    it("Should obtain quote id and delete it", async () => {
+      const quote = "Test Update";
+      const author = "Test Update Author";
+      let objId = "";
+      await chai
+        .request("http://localhost:4001")
+        .get("/quotes/")
+        .then((response) => {
+          const allQuotes = response.body.allObjects;
+          allQuotes.forEach((obj) => {
+            if (obj.quote === quote) {
+              objId = obj._id;
+            }
+          });
+        })
+        .catch((error) => {
+          throw error;
+        });
+      await chai
+        .request("http://localhost:4001")
+        .put("/quotes/" + objId)
+        .type("form")
+        .send({ author: updatedAuthor })
+        .then((response) => {
+          const updatedMessage = response.body.message;
+          const updatedAuthor = response.body.updatedObject.author;
+          const updatedQuoteId = response.body.updatedObject._id;
+          const message = "Successfully updated Object"
+          assert.equal(message, updatedMessage)
+          assert.equal(author, updateAuthor);
+          assert.equal(objId, updatedQuoteId);
         });
     });
   });

@@ -6,36 +6,41 @@ const morgan = require("morgan");
 const Quote = require("./models/quote");
 const mongoose = require("mongoose");
 const { connect, disconnect } = require("./database/database");
+const { isFunction } = require("util");
 
 const PORT = process.env.PORT || 4001;
 
-//middleware bodyParser for app/x-urlencoded requests
-app.use(bodyParser.urlencoded({ extended: false }));
+//MORGAN
+app.use(
+  //MORGAN
+  morgan("tiny"),
+  //STATIC PUBLIC DIRECTORY
+  express.static("public"),
+  //JSON BODY PARSER
+  bodyParser.json(),
+  //URL ENDCONDED BODY PARSER 
+  bodyParser.urlencoded({extended:false})
+  );
 
-//middleware bodyParser for app/json requests
-app.use(bodyParser.json());
 
-//Middleware for morgan
-app.use(morgan("tiny"));
-
-//Middleware for setting static directories
-app.use(express.static("public"));
-
-//Establishes connection to the database
+//DATABASE CONNECT
 connect();
 
-//Will send the Root
+//GET ROOT PAGE
 app.get("/", (req, res) => {
   res.render(path.join(__dirname, "index.html"));
   res.status(200);
 });
 
-//Retrieves all the quotes
+//GET ALL OBJECTS
 app.get("/quotes", (req, res) => {
   Quote.find()
     .exec()
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send({
+        message: "All Quote Objects",
+        allObjects: response,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -43,7 +48,7 @@ app.get("/quotes", (req, res) => {
     });
 });
 
-//Allows for a query to DB by quoteID
+//GET OBJECT BY ID
 app.get("/quotes/:quoteId", (req, res, next) => {
   const id = req.params.quoteId;
   //Will sort through the DB to find object by id
@@ -57,7 +62,7 @@ app.get("/quotes/:quoteId", (req, res, next) => {
         });
       } else {
         res.status(404).send({
-          message: "Cannot retrieve invalid ID",
+          message: "Cannot delete invalid ID: " + id,
         });
       }
     })
@@ -67,24 +72,31 @@ app.get("/quotes/:quoteId", (req, res, next) => {
     });
 });
 
+//DELETE OBJECT BY ID
 app.delete("/quotes/:quoteId", (req, res, next) => {
-  const id = req.params.id;
-  Quote.findByIdAndRemove(id, (error, quote) => {
-    if (error) {
-      console.log(error)
-      res.status(404).send({
-        message: "Cannot retrieve invalid ID",
-      })
-    } else {
-      res.status(202).send({
-        message: "Successfully deleted Object",
-        quoteDeleted: id,
-      });
-    }
-  });
+  const id = req.params.quoteId;
+  if (id) {
+    Quote.findByIdAndDelete(id, (error, quote) => {
+      if (error) {
+        console.log(error);
+        res.status(404).send({
+          message: "Cannot delete invalid ID: " + id,
+        });
+      } else {
+        res.status(202).send({
+          message: "Successfully deleted Object",
+          deletedObject: quote,
+        });
+      }
+    });
+  } else {
+    res.status(404).send({
+      message: "Cannot delete invalid ID: " + id,
+    });
+  }
 });
 
-//POST Request to quotes
+//POST NEW QUOTE
 app.post("/quotes", (req, res) => {
   //Request variables//
   const quote = req.body.quote;
@@ -107,7 +119,7 @@ app.post("/quotes", (req, res) => {
       .then((result) => {
         console.log(result);
         res.status(201).send({
-          message: "Succesfully Created Object",
+          message: "Succesfully created Object",
           createdObject: newQuote,
         });
       })
@@ -116,11 +128,15 @@ app.post("/quotes", (req, res) => {
       });
   } else {
     res.status(422).send({
-      warning: "Not a valid submission",
       message: "All fields must contain values",
     });
   }
 });
+
+//PUT OBJECT BY ID
+app.put("/quotes/:quoteId",(req,res,next)=>{
+  
+})
 
 app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);

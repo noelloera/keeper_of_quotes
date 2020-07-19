@@ -8,16 +8,17 @@ const allQuotes = document.getElementById("quotes");
 //It is not proper to make requests to the currently running server
 //You should aim to make all the variables accessible the server
 async function getQuotes() {
-  let response = await (await fetch("/quotes")).json()
-  response.map(await function (obj, i) {
-    allQuotes.innerText += `\n${obj.quote} \n${obj.author} \n${obj.source}\n`;
-  })
+  let response = await (await fetch("/quotes")).json();
+  response.allObjects.map(
+    await function (obj, i) {
+      allQuotes.innerText += `\n${obj.quote} \n${obj.author} \n${obj.source}\n`;
+    }
+  );
 }
 async function runAll() {
   await getQuotes();
 }
 runAll();
-
 
 //This the submit form eventListener
 form.addEventListener("submit", async (e) => {
@@ -42,4 +43,3 @@ form.addEventListener("submit", async (e) => {
     console.log(content);
   }
 });
-
