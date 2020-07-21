@@ -5,7 +5,7 @@ const assert = chai.assert;
 //Will allow plugin to be used in Chai
 chai.use(chaiHttp);
 
-//This will test the server responses to the requests
+//GET ROOT PAGE
 describe("/", () => {
   describe("GET", () => {
     //Server makes a request and recieves a code of 200 'root'\
@@ -23,6 +23,7 @@ describe("/", () => {
         });
     });
   });
+  //GET ALL OBJECTS TEST
   describe("/quotes", () => {
     describe("GET", () => {
       it("Will match the object in the GET quotes, to verify response", async () => {
@@ -36,9 +37,9 @@ describe("/", () => {
             allQuotes.forEach((obj) => {
               quotes += `${obj.quote} ${obj.author} ${obj.source}`;
             });
-            assert.include(quotes, "Testing");
-            assert.include(quotes, "Author");
-            assert.include(quotes, "Source");
+            assert.include(quotes, "Some Quote");
+            assert.include(quotes, "Some Author");
+            assert.include(quotes, "Some Source");
             assert.equal(response.status, 200);
           })
           .catch((error) => {
@@ -46,6 +47,7 @@ describe("/", () => {
           });
       });
     });
+    //POST NEW OBJECT TEST
     //This function needs to be asynchronous because it will perform actions in the browser
     describe("POST", () => {
       it("Will make POST request to server, and check new quote exists", async () => {
@@ -96,10 +98,10 @@ describe("/", () => {
       });
     });
   });
-
+  //GET: ID TEST
   describe("GET:id", () => {
     it("Should obtain id and use the id to retrive object by using id", async () => {
-      const quote = "Test";
+      const quote = "Test Quote";
       let objId = "";
       await chai
         .request("http://localhost:4001")
@@ -130,7 +132,7 @@ describe("/", () => {
         });
     });
   });
-
+  //DELETE: ID TEST
   describe("DELETE:id", () => {
     it("Should obtain quote id and delete it", async () => {
       const quote = "Test Delete";
@@ -168,11 +170,13 @@ describe("/", () => {
         });
     });
   });
+  //PUT: ID TEST
   describe("PUT:id", () => {
     it("Should obtain quote id and delete it", async () => {
       const quote = "Test Update";
       const author = "Test Update Author";
       let objId = "";
+      let oldObj = {};
       await chai
         .request("http://localhost:4001")
         .get("/quotes/")
@@ -181,6 +185,7 @@ describe("/", () => {
           allQuotes.forEach((obj) => {
             if (obj.quote === quote) {
               objId = obj._id;
+              oldObj = obj;
             }
           });
         })
@@ -191,15 +196,17 @@ describe("/", () => {
         .request("http://localhost:4001")
         .put("/quotes/" + objId)
         .type("form")
-        .send({ author: updatedAuthor })
+        .send({
+          quote: oldObj.quote,
+          author: author,
+          source: oldObj.source,
+        })
         .then((response) => {
           const updatedMessage = response.body.message;
-          const updatedAuthor = response.body.updatedObject.author;
-          const updatedQuoteId = response.body.updatedObject._id;
-          const message = "Successfully updated Object"
-          assert.equal(message, updatedMessage)
-          assert.equal(author, updateAuthor);
-          assert.equal(objId, updatedQuoteId);
+          const updatedAuthor = response.body.newObject.author;
+          const message = "Successfully updated Object";
+          assert.equal(message, updatedMessage);
+          assert.equal(author, updatedAuthor);
         });
     });
   });

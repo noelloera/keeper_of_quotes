@@ -18,10 +18,9 @@ app.use(
   express.static("public"),
   //JSON BODY PARSER
   bodyParser.json(),
-  //URL ENDCONDED BODY PARSER 
-  bodyParser.urlencoded({extended:false})
-  );
-
+  //URL ENDCONDED BODY PARSER
+  bodyParser.urlencoded({ extended: false })
+);
 
 //DATABASE CONNECT
 connect();
@@ -134,9 +133,38 @@ app.post("/quotes", (req, res) => {
 });
 
 //PUT OBJECT BY ID
-app.put("/quotes/:quoteId",(req,res,next)=>{
-  
-})
+app.put("/quotes/:quoteId", (req, res, next) => {
+  //Use all 3 in the body
+  const id = req.params.quoteId;
+  const quote = req.body.quote;
+  const author = req.body.author;
+  const source = req.body.source;
+  const updatedQuote = {
+    quote: quote,
+    author: author,
+    source: source,
+  };
+  if (quote && author && source) {
+    Quote.findByIdAndUpdate(id, updatedQuote, (error, object) => {
+      if (error) {
+        console.log(error);
+        res.send(404).send({
+          message: "Cannot update invalid ID",
+        });
+      } else {
+        res.status(202).send({
+          message: "Successfully updated Object",
+          oldObject: object,
+          newObject: updatedQuote,
+        });
+      }
+    });
+  } else {
+    res.status(422).send({
+      message: "All fields must contain values",
+    });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);
