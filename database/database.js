@@ -10,24 +10,30 @@ const dbUrl =
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 };
 
-//Modular database connection functions 
+//Modular database connection functions
 async function connect() {
   await mongoose
     .connect(dbUrl, options)
     .then(() => {
-      console.log("... successfuly connected to Database");
+      console.log("... successfully connected Database");
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
     });
 }
 
 async function disconnect() {
-  await mongoose.connect.db.dropDatabase();
-  await mongoose.disconnect();
+  await mongoose
+    .disconnect()
+    .then(() => {
+      console.log("... successfully disconnected Database")
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 module.exports = {
