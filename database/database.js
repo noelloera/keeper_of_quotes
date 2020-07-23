@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require('dotenv').config()
 
 //DatabaseURL as well as secrets being stored in environment variables
 const dbUrl =

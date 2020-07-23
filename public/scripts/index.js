@@ -5,20 +5,28 @@ const source = document.getElementById("source");
 const form = document.getElementById("form");
 const allQuotes = document.getElementById("quotes");
 
-//It is not proper to make requests to the currently running server
-//You should aim to make all the variables accessible the server
+//Maps the Objects from the server
 async function getQuotes() {
   let response = await (await fetch("/quotes")).json();
-  response.allObjects.map(
-    await function (obj, i) {
-      allQuotes.innerText += `\n${obj.quote} \n${obj.author} \n${obj.source}\n`;
-    }
-  );
+  allQuotes.innerHTML = response.allObjects.map(obj => {
+    return `<div id=${obj._id}>
+      <p>Quote: ${obj.quote}</p>
+      <p>Author: ${obj.author}</p>
+      <p>Source: ${obj.source}</p>
+      </div>`
+  }).join('');
 }
+
 async function runAll() {
   await getQuotes();
 }
 runAll();
+
+allQuotes.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+})
+
 
 //This the submit form eventListener
 form.addEventListener("submit", async (e) => {

@@ -19,7 +19,7 @@ router.get("/quotes", (req, res) => {
       } else {
         res.status(200).send({
           message: "Successfully found Objects",
-          allObjects: quotes,
+          allObjects: quotes
         });
         disconnect();
       }
