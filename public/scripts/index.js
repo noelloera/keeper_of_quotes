@@ -8,13 +8,15 @@ const allQuotes = document.getElementById("quotes");
 //Maps the Objects from the server
 async function getQuotes() {
   let response = await (await fetch("/quotes")).json();
-  allQuotes.innerHTML = response.allObjects.map(obj => {
-    return `<div id=${obj._id}>
+  allQuotes.innerHTML = response.allObjects
+    .map((obj) => {
+      return `<div id=${obj._id}>
       <p>Quote: ${obj.quote}</p>
       <p>Author: ${obj.author}</p>
       <p>Source: ${obj.source}</p>
-      </div>`
-  }).join('');
+      </div>`;
+    })
+    .join("");
 }
 
 async function runAll() {
@@ -24,9 +26,8 @@ runAll();
 
 allQuotes.addEventListener("click", async (e) => {
   e.preventDefault();
-
-})
-
+  allQuotes.children();
+});
 
 //This the submit form eventListener
 form.addEventListener("submit", async (e) => {
