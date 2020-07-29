@@ -124,7 +124,7 @@ router.put("/quotes/:quoteId", (req, res, next) => {
     };
     Quote.findByIdAndUpdate(id, updatedQuote, (error, object) => {
       if (error || !quote) {
-        res.send(404).send({
+        res.status(404).send({
           message: "Cannot update invalid ID",
           error: error,
         });

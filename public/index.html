@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/public/styles/index.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+      </style>
+      <link rel="stylesheet" href="styles/index.css">
     <title>The Keeper of Quotes</title>
 </head>
 
@@ -20,13 +23,16 @@
         <input placeholder="Enter Source" type="text" id="source" name="source"></input>
         <br>
         <button id="submit" name="submit">SUBMIT</button>
-        <button id="update" style="display:none">UPDATE</button>
-        <button id="remove" style="display:none">REMOVE</button>
-        <p id="warning" style="display:none">ALL VALUES MUST BE ENTERED</p>
+        <button class= "hidden" id="update" style="display:none">UPDATE</button>
+        <button class="hidden" id="remove" style="display:none">REMOVE</button>
     </form>
+    <p id="warning" style="display:none">ALL VALUES MUST BE ENTERED</p>
+    <h6 id="loading" style="display:block">... Loading Existing Quotes ...</h6>
     <br>
     <div name="quotes" id="quotes" class="allQuotes"></div>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
+    <script type="module" src="scripts/actions/select.js"></script>
+
 </body>
 
 </html>

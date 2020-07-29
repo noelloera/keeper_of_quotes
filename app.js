@@ -25,7 +25,7 @@ app.use(
 
 //GET ROOT PAGE
 app.get("/", (req, res) => {
-  res.render(path.join(__dirname, "index.html"));
+  res.render(path.join(__dirname,"index.html"));
   res.status(200);
 });
 
