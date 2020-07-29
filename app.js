@@ -10,7 +10,7 @@ const quotes = require("./routes/quotes");
 //PORT
 const PORT = process.env.PORT || 4001;
 
-//MIDDLEWARE 
+//MIDDLEWARE
 app.use(
   //MORGAN
   morgan("tiny"),
@@ -20,7 +20,7 @@ app.use(
   bodyParser.json(),
   //URL ENDCONDED BODY PARSER
   bodyParser.urlencoded({ extended: false }),
-  ("/quotes",quotes)
+  ("/quotes", quotes)
 );
 
 //GET ROOT PAGE

@@ -56,7 +56,7 @@ router.delete("/quotes/:quoteId", (req, res, next) => {
     connect();
   }
   Quote.findByIdAndDelete(id, (error, quote) => {
-    if (error|| !quote) {
+    if (error || !quote) {
       res.status(404).send({
         message: "Cannot delete invalid ID: " + id,
       });
@@ -88,7 +88,7 @@ router.post("/quotes", (req, res) => {
     });
     //Attempts to save the quote object
     newQuote.save((error, quote) => {
-      if (error|| !quote) {
+      if (error || !quote) {
         res.status(422).send({
           message: "All fields must contain values",
         });
@@ -123,7 +123,7 @@ router.put("/quotes/:quoteId", (req, res, next) => {
       source: source,
     };
     Quote.findByIdAndUpdate(id, updatedQuote, (error, object) => {
-      if (error|| !quote) {
+      if (error || !quote) {
         res.send(404).send({
           message: "Cannot update invalid ID",
           error: error,
