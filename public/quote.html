@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/public/styles/index.css">
-    <title>The Keeper of Quotes</title>
+    <title>Quote Edit</title>
 </head>
 
 <body>
     <h1>The Keeper of Quotes</h1>
     <form id="form">
-        <label>Enter a Quote: </label>
+        <label>Edit Quote </label>
         <br>
         <input placeholder="Enter Quote" type="text" id="quote" name="quote"></input>
         <br>
@@ -20,13 +20,10 @@
         <input placeholder="Enter Source" type="text" id="source" name="source"></input>
         <br>
         <button id="submit" name="submit">SUBMIT</button>
-        <button id="edit" style="display:none">EDIT</button>
-        <button id="remove" style="display:none">REMOVE</button>
-        <p id="warning" style="display:none">ALL VALUES MUST BE ENTERED</p>
+        <button id="delete" name="delete">DELETE</button>
     </form>
     <br>
-    <div name="quotes" id="quotes" class="allQuotes"></div>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/edit-quote.js"></script>
 </body>
 
 </html>
