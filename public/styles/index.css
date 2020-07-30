@@ -1,97 +1,116 @@
-* {
-  text-align: center;
-  font-family: arial;
-  color: white;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
 html{
-  background-color: lightgray;
+  background-color: #545c63
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header{
+  color: white;
+  font-size: 100%;
+  text-align: center;
+  font-family:'Lobster', cursive;
+  text-shadow: 5px 5px 5px rgba(50,0,0,.5);
+  font-size: 3.5em;
+  margin: 0.5em 0 0.3em 0;
 }
 
 body{
-  height: 80%;
-  width:700px;
-  border:white 20px solid;
-  border-radius: 30px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  background: linear-gradient(0deg, rgba(100,249,255,1) 1%, rgba(133,250,255,1) 100%);
-  margin: 150px auto;
+  height: 80vh;
+  border:white 10px solid;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.05);
+  background: linear-gradient(0deg, rgb(21, 143, 180) 1%, rgb(124, 225, 255) 100%);
+  margin: 40px 15px;
+  font-family: Arial;
+
 }
 
 form{
-  height: 50%;
-  margin: auto auto;
-}
-input{
-  color: rgb(107, 105, 105);
-  margin: 10px;
-  font-family:'Montserrat', sans-serif;
-  width: 50%;
-  height: 20%;
-  border-radius: 5px;
-  border: .5px white solid;
-  font-size:25px;
-  overflow-x:hidden;
-}
-h1{
   color: white;
-  font-size: 520%;
-  font-family:'Lobster', cursive;
-  text-shadow: 5px 5px 5px rgba(50,0,0,.4);
-
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.25em;
+  align-items: center;
 }
-
-div{
-  color:white;
-  font-size: 120%;
-  font-family:'Montserrat', sans-serif;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(50,0,0,.5);
-  padding: 3%;
-  border-bottom: white;
-}
-
 label{
-  color:white;
-  font-size: 200%;
-  font-family:'Montserrat', sans-serif;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(50,0,0,.5);
+  margin-bottom: .2em;
+}
+textarea{
+  margin: 1em 0 .3em 0;
+  font-family: Arial;
+  border-radius: .3em;
+  border: white solid ;
+  width: 85%;
+  text-align: center;
+  resize:vertical;
 }
 
-button{
-  font-size: 25px;
-  color:White;
-  margin-top:15px;
-  width:150px;
-  height:35px;
-  border-radius: 5px;
-  background-color:lightgray;
-  font-family:'Montserrat', sans-serif;
-  margin: 15px;
-  text-transform: lowercase;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0)
-}
-p{
-  color: rgb(255, 74, 186);
-  font-size: 130%;
-  font-family:'Montserrat', sans-serif;
-
-}
-h6{
-  height: 50%;
-  color: white;
-  font-family:'Montserrat', sans-serif;
-  font-size:30px;
-}
-.hidden{
- float: left;
+input{
+font-size: .5em;
+width: 14em;
+text-align:center;
+flex-shrink:1;
+margin: 1% 10%;
+border: white solid ;
+border-radius: .2em;
 }
 
-#update{
+
+.notices{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 0em;
+
+}
+
+
+
+
+.allQuotes{
+  display: flex;
+  margin: 1em 1em;
+}
   
-}
-
-#remove{
-
-}
