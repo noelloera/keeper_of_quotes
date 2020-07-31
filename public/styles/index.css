@@ -1,74 +1,161 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
-html{
-  background-color: #545c63
+html {
+  background-color: #545c63;
 }
 body {
   line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-header{
+header {
   color: white;
   font-size: 100%;
   text-align: center;
-  font-family:'Lobster', cursive;
-  text-shadow: 5px 5px 5px rgba(50,0,0,.5);
+  font-family: "Lobster", cursive;
+  text-shadow: 5px 5px 5px rgba(50, 0, 0, 0.5);
   font-size: 3.5em;
   margin: 0.5em 0 0.3em 0;
 }
 
-body{
+.application {
   min-height: 80vh;
-  border:white 10px solid;
+  border: white 10px solid;
   border-radius: 20px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.05);
-  background: linear-gradient(0deg, rgb(21, 143, 180) 1%, rgb(124, 225, 255) 100%);
-  margin: 40px 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.05);
+  background: linear-gradient(
+    0deg,
+    rgb(21, 143, 180) 1%,
+    rgb(124, 225, 255) 100%
+  );
+  margin-top: 40px;
   font-family: Arial;
-  resize:vertical;
-
-
+  resize: vertical;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 
-form{
+form {
   color: white;
   display: flex;
   flex-direction: column;
@@ -76,55 +163,60 @@ form{
   font-size: 1.25em;
   align-items: center;
 }
-label{
-  margin-bottom: .2em;
+label {
+  margin-bottom: 0.2em;
 }
-textarea{
-  font-size: .7em;
-  margin: 1em 0 .3em 0;
+textarea {
+  font-size: 1em;
+  margin: 1em 0 0.3em 0;
   font-family: Arial;
-  border-radius: .3em;
-  border: white solid ;
+  border-radius: 0.3em;
+  border: white solid;
   width: 85%;
   text-align: center;
-  resize:vertical;
+  resize: vertical;
 }
 
-input{
-font-size: .6em;
-width: 16em;
-height: 1em;
-text-align:center;
-flex-shrink:1;
-margin: 1% 10%;
-border: white solid ;
-border-radius: .2em;
+input {
+  font-size: 1em;
+  width: 16em;
+  height: 1.1em;
+  text-align: center;
+  flex-shrink: 1;
+  margin: 1% 10%;
+  border: white solid;
+  border-radius: 0.2em;
 }
 
 ::placeholder {
-  font-size: medium;
+  font-size: 120%;
 }
 
-button{
+button {
   width: 7em;
   height: 3em;
-  border: white solid ;
-border-radius: .2em;
+  border: white solid;
+  border-radius: 0.2em;
+}
+.hidden-buttons {
+  display: flex;
+  justify-content: center;
+}
+.hidden-buttons button {
+  margin: 0em 1em;
 }
 
-.notices{
-  display:flex;
+.notices {
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1em 0em;
-
 }
 
 .loading {
-  left: 40%;
-  top:59%;
+  top: 40%;
   position: absolute;
-  margin: 1em;
+  margin: auto auto;
   border: 8px solid #cccbcb; /* Light grey */
   border-top: 8px solid #ffffff; /* Blue */
   border-radius: 50%;
@@ -134,12 +226,15 @@ border-radius: .2em;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-
-.notices h2{
+.notices h2 {
   text-align: center;
   margin: 1em;
   color: rgb(248, 113, 176);
@@ -147,25 +242,45 @@ border-radius: .2em;
   text-transform: uppercase;
 }
 
-
-
-.allQuotes{
+.allQuotes {
   display: flex;
   margin-top: 1em;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-.allQuotes div{
+  align-items: center;
+  justify-content: center;
   margin: 0.7em;
   color: rgb(255, 255, 255);
-  font-size: 1.25em;
-}
-.allQuotes h1{
-  font-size: 1.1em;
+  font-size: 1.7em;
+  text-align: center;
 }
 
-.allQuotes h6{
-  font-size: 1em;
-  color: rgb(201, 201, 201)
+.allQuotes h1 {
+  margin: 1em 0 0 0;
+}
+
+.allQuotes h6 {
+  font-size: 0.7em;
+  color: rgb(207, 207, 207);
+}
+
+@media screen and (max-width: 800px) {
+  .application {
+    width: 90%;
+    margin-top: 5%;
+  }
+  .loading {
+    top: 60%;
+  }
+
+  textarea {
+    font-size: 1em;
+  }
+  input {
+    font-size: 0.8em;
+    width: 16em;
+    height: 1em;
+  }
+  .allQuotes {
+    font-size: 1.5em;
+  }
 }

@@ -17,7 +17,7 @@ export default async function deleteEvent(e) {
       };
       const response = await fetch("quotes/" + selectedQuote._id, options);
       console.log(response.json());
-      alert("Deleted quote successfully");
+      alert("Deleted Quote successfully");
       window.location = "/";
     } else {
       warning.style.display = "block";
