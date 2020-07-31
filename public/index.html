@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
   <style>
     @import url("https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap");
   </style>
@@ -18,7 +18,7 @@
   <form id="form">
     <label>Display Your Favorite Quotes!
     </label>
-    <textarea id="quote" name="quote" rows="3" placeholder="Enter a Quote"></textarea>
+    <textarea id="quote" name="quote" rows="2" placeholder="Enter the Quote"></textarea>
     <input placeholder="Enter the Author" type="text" id="author" name="author" />
     <input placeholder="Enter the Source" type="text" id="source" name="source" />
     <button id="submit" name="submit">SUBMIT</button>
@@ -27,7 +27,7 @@
   </form>
   <div class="notices">
     <h2 id="warning" style="display: none;">All values Must Be Entered</h2>
-    <h1 id="loading" style="display: block;">... Loading Existing Quotes ...</h1>
+    <h1 id="loading" style="display: block;" class="loading"></h1>
   </div>
   <div name="quotes" id="quotes" class="allQuotes"></div>
   <script type="module" src="scripts/index.js"></script>
