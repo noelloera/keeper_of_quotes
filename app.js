@@ -28,7 +28,11 @@ app.get("/", (req, res) => {
   res.render(path.join(__dirname,"index.html"));
   res.status(200);
 });
-
+/*
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static("public"))
+}
+*/
 app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);
 });
