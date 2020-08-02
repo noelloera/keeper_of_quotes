@@ -25,7 +25,7 @@
     "wdio-chromedriver-service": "^6.0.3"
   },
   "scripts": {
-    "start": "nodemon app.js" ,
+    "start": "node app.js" ,
     "heroku-postbuild": "npm install && npm start",
     "test": "npx wdio wdio.conf.js"
   },
