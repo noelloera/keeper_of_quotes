@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require('dotenv').config()
+require("dotenv").config();
 
 //DatabaseURL as well as secrets being stored in environment variables
 const dbUrl =
@@ -17,7 +17,7 @@ const options = {
 //Modular database connection functions
 async function connect() {
   await mongoose
-    .connect(process.env.MONGODB_URL || dbUrl, options)
+    .connect(process.env.MONGODB_URI || dbUrl, options)
     .then(() => {
       console.log("... successfully connected Database");
     })
@@ -30,7 +30,7 @@ async function disconnect() {
   await mongoose
     .disconnect()
     .then(() => {
-      console.log("... successfully disconnected Database")
+      console.log("... successfully disconnected Database");
     })
     .catch((error) => {
       console.log(error);
