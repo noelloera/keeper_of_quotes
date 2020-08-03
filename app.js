@@ -21,11 +21,10 @@ app.use(
   ("/quotes", quotes)
 );
 
-if(process.env.NODE_ENV==="production"){
-  app.use(express.static("public"))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("public"));
 }
 
-
-app.listen(PORT, () => {
+app.listen(PORT, "174.129.240.180", () => {
   console.log(`... currently listening on port ${PORT}`);
 });
