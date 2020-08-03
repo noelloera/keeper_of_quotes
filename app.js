@@ -8,7 +8,7 @@ const morgan = require("morgan");
 //Routes
 const quotes = require("./routes/quotes");
 //PORT
-const PORT = process.env.PORT || "8000";
+const PORT = process.env.PORT;
 
 //MIDDLEWARE
 app.use(

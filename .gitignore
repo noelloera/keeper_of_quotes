@@ -1,3 +1,5 @@
 node_modules/
+test/specs/*
 .env
 .DS_Store
+wdio.config.js
