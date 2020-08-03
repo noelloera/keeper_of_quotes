@@ -26,12 +26,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-server.listen(PORT,'127.0.0.1',function(){
-  server.close(function(){
-    server.listen(PORT,'192.168.0.202')
-  })
- })
-/*
-app.listen(PORT, "174.129.240.180", () => {
+
+
+app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);
-});*/
+});
