@@ -8,9 +8,9 @@ export default async function getQuotes(allQuotes) {
       allQuotes.innerHTML = response.allObjects
         .map((obj, i) => {
           return `<div id=${i}>
-        <h1 style="pointer-events:none">${obj.quote}</h1>
-        <h6 style="pointer-events:none">by: ${obj.author}</h6>
-        <h6 style="pointer-events:none">- ${obj.source}</h6>
+        <h1 style="pointer-events: none">${obj.quote}</h1>
+        <h6 style="pointer-events: none">by: ${obj.author}</h6>
+        <h6 style="pointer-events: none">- ${obj.source}</h6>
         </div>`;
         })
         .join("");

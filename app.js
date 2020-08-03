@@ -8,7 +8,7 @@ const morgan = require("morgan");
 //Routes
 const quotes = require("./routes/quotes");
 //PORT
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || "8000";
 
 //MIDDLEWARE
 app.use(
@@ -25,14 +25,11 @@ app.use(
 
 //GET ROOT PAGE
 app.get("/", (req, res) => {
-  res.render(path.join(__dirname,"index.html"));
+  res.render(path.join(__dirname, "index.html"));
   res.status(200);
 });
-/*
-if(process.env.NODE_ENV==="production"){
-  app.use(express.static("public"))
-}
-*/
+
+
 app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);
 });

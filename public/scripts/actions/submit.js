@@ -15,9 +15,13 @@ export default async function submitEvent(e){
           },
           body: JSON.stringify(fullQuote),
         };
-        const raw = await fetch("quotes", options);
-        alert("Submitted new Quote!");
-        window.location = "/";
+        const response = await fetch("quotes", options);
+        if(response){
+          alert("Submitted A New Quote!")
+          window.location = "/"
+        }else{
+          throw error;
+        }
       } else {
         warning.style.display = "block";
       }

@@ -2,10 +2,12 @@ export default async function deleteEvent(e) {
   e.preventDefault();
   try {
     let selectedQuote = document.body.selectedQuote;
+    //Checks if the values are entered and selected exists
     if (
       quote.value &&
       author.value &&
       source.value &&
+      selectedQuote&&
       selectedQuote._id !== ""
     ) {
       const options = {
@@ -15,10 +17,14 @@ export default async function deleteEvent(e) {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch("quotes/" + selectedQuote._id, options);
-      console.log(response.json());
-      alert("Deleted Quote successfully");
-      window.location = "/";
+      let response = await fetch("quotes/" + selectedQuote._id, options);
+      if(response){
+        alert("Deleted Quote successfully");
+        window.location = "/";
+      }
+      else{
+        throw error;
+      }
     } else {
       warning.style.display = "block";
     }

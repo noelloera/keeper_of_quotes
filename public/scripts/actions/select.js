@@ -9,7 +9,6 @@ allQuotes.addEventListener("click", async function (e) {
     let selectedQuote = quoteObjects[quoteId];
     document.body.selectedQuote = selectedQuote;
     if (selectedQuote.quote && selectedQuote.author && selectedQuote.source) {
-      console.log(selectedQuote)
       quote.value = selectedQuote.quote;
       author.value = selectedQuote.author;
       source.value = selectedQuote.source;
@@ -24,4 +23,3 @@ allQuotes.addEventListener("click", async function (e) {
     console.log(error);
   }
 });
-
