@@ -17,7 +17,7 @@ const options = {
 //Modular database connection functions
 async function connect() {
   await mongoose
-    .connect(/*process.env.MONGODB_URI ||*/ dbUrl, options)
+    .connect(process.env.MONGODB_URL || dbUrl, options)
     .then(() => {
       console.log("... successfully connected Database");
     })
