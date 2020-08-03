@@ -25,6 +25,13 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("public"));
 }
 
+
+server.listen(PORT,'127.0.0.1',function(){
+  server.close(function(){
+    server.listen(PORT,'192.168.0.202')
+  })
+ })
+/*
 app.listen(PORT, "174.129.240.180", () => {
   console.log(`... currently listening on port ${PORT}`);
-});
+});*/
