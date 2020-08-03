@@ -8,7 +8,7 @@ const morgan = require("morgan");
 //Routes
 const quotes = require("./routes/quotes");
 //PORT
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PROXIMO_URL || 4001;
 
 //MIDDLEWARE
 app.use(
