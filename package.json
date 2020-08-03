@@ -28,7 +28,6 @@
   },
   "scripts": {
     "start": "node app.js" ,
-    "heroku-postbuild": "npm install && npm start",
     "test": "npx wdio wdio.conf.js"
   },
   "repository": {

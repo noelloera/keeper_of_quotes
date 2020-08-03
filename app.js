@@ -8,14 +8,12 @@ const morgan = require("morgan");
 //Routes
 const quotes = require("./routes/quotes");
 //PORT
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 4001;
 
 //MIDDLEWARE
 app.use(
   //MORGAN
   morgan("tiny"),
-  //STATIC PUBLIC DIRECTORY
-  express.static("public"),
   //JSON BODY PARSER
   bodyParser.json(),
   //URL ENDCONDED BODY PARSER
@@ -23,11 +21,9 @@ app.use(
   ("/quotes", quotes)
 );
 
-//GET ROOT PAGE
-app.get("/", (req, res) => {
-  res.render(path.join(__dirname, "index.html"));
-  res.status(200);
-});
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static("public"))
+}
 
 
 app.listen(PORT, () => {
