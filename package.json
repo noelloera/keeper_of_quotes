@@ -8,26 +8,26 @@
     "chai-http": "^4.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.26",
+    "mongoose": "^5.10.11",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.6"
   },
-  "engines":{
-    "node":"12.16.3"
+  "engines": {
+    "node": "12.16.3"
   },
   "devDependencies": {
-    "@wdio/cli": "^6.3.6",
-    "@wdio/local-runner": "^6.3.6",
-    "@wdio/mocha-framework": "^6.3.6",
-    "@wdio/spec-reporter": "^6.3.6",
-    "@wdio/sync": "^6.3.6",
+    "@wdio/cli": "^6.7.0",
+    "@wdio/local-runner": "^6.7.0",
+    "@wdio/mocha-framework": "^6.7.0",
+    "@wdio/spec-reporter": "^6.7.0",
+    "@wdio/sync": "^6.7.0",
     "chai": "^4.2.0",
     "chromedriver": "^84.0.1",
     "mocha": "^7.2.0",
-    "wdio-chromedriver-service": "^6.0.3"
+    "wdio-chromedriver-service": "^6.0.4"
   },
   "scripts": {
-    "start": "node app.js" ,
+    "start": "node app.js",
     "test": "npx wdio wdio.conf.js"
   },
   "repository": {

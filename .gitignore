@@ -3,3 +3,4 @@ test/specs/*
 .env
 .DS_Store
 wdio.config.js
+.README.md.icloud
