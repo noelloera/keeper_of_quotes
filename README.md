@@ -1,7 +1,7 @@
 # Quotekeeper
 
 ## Introduction 
-Full-stack application that displays quotes stored using back-end RESTful server and MongoDb database.
+This is a full-stack application which uses test driven development, which allows for the storage of quotes in a Mongo DB connected database. This application uses CRUD server principles.
 
 ## Table of Contents
 * [General Info](#general-info)
