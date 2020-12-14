@@ -37,7 +37,7 @@ Quotekeeper is an application that uses Javascript for front-end mobile responsi
 * Body-parser v1
 
 ## Setup
-Running this project requires local installation of npm: 
+Running this project requires local installation of npm:
 1. $ cd ..Quotekeeper
 2. $ npm install
 3. $ node app.js / nodemon app.js
