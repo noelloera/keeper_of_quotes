@@ -6,22 +6,22 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "chai-http": "^4.3.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.11",
+    "mongoose": "^5.13.8",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.12"
   },
   "engines": {
     "node": "12.16.3"
   },
   "devDependencies": {
-    "@wdio/cli": "^6.7.0",
-    "@wdio/local-runner": "^6.7.0",
-    "@wdio/mocha-framework": "^6.7.0",
-    "@wdio/spec-reporter": "^6.7.0",
-    "@wdio/sync": "^6.7.0",
-    "chai": "^4.2.0",
+    "@wdio/cli": "^6.12.1",
+    "@wdio/local-runner": "^6.12.1",
+    "@wdio/mocha-framework": "^6.11.0",
+    "@wdio/spec-reporter": "^6.11.0",
+    "@wdio/sync": "^6.11.0",
+    "chai": "^4.3.4",
     "chromedriver": "^84.0.1",
     "mocha": "^7.2.0",
     "wdio-chromedriver-service": "^6.0.4"

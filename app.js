@@ -24,10 +24,6 @@ app.use(
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("public"));
 }
-
-
-
-
 app.listen(PORT, () => {
   console.log(`... currently listening on port ${PORT}`);
 });
