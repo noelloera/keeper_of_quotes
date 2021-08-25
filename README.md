@@ -1,17 +1,21 @@
 # Quotekeeper
 
-## Introduction 
+## Introduction
+
 This is a full-stack application which uses test driven development, which allows for the storage of quotes in a Mongo DB connected database. This application uses CRUD server principles.
 
 ## Table of Contents
-* [General Info](#general-info)
-* [Features](#features)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Status](#status)
+
+- [General Info](#general-info)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Status](#status)
 
 ## General Info
+
 Quotekeeper is an application that uses Javascript for front-end mobile responsive UI and Express.js REST API for MongoDB databaase queries. Provide routes for for rendering the client side static application as well as provides the routes for the storage and the update of existing data from MongoDB database.
+
 1. The server listens for calls made to PORT
 2. Upon root request "/" the server feeds the client static file
 3. The server follows CRUD requests for the quotes being stored in the database
@@ -19,28 +23,33 @@ Quotekeeper is an application that uses Javascript for front-end mobile responsi
 5. Followed Test-Driven-Development principles. Contains respective test files
 
 ## Features
-* Data persistent
-* MongoDB data storage 
-* Mobile responsive front-end
+
+- Data persistent
+- MongoDB data storage
+- Mobile responsive front-end
 
 ## Technologies
-* HTML
-* CSS
-* Javascript
-* Express
-* Wdio
-* Chai-Http v4
-* Morgan v1
-* Mongoose v5
-* Nodemon v2
-* Dotenv v8
-* Body-parser v1
+
+- HTML
+- CSS
+- Javascript
+- Express
+- Wdio
+- Chai-Http v4
+- Morgan v1
+- Mongoose v5
+- Nodemon v2
+- Dotenv v8
+- Body-parser v1
 
 ## Setup
+
 Running this project requires local installation of npm:
+
 1. $ cd ..Quotekeeper
 2. $ npm install
 3. $ node app.js / nodemon app.js
 
 ## Status
+
 Application is functional. Development still ongoing.

@@ -135,7 +135,6 @@ header {
   font-size: 3.5em;
   margin: 0.5em 0 0.3em 0;
 }
-
 .application {
   min-height: 80vh;
   border: white 10px solid;
@@ -256,7 +255,6 @@ button {
 
 .allQuotes h1 {
   margin: 1em 0 0 0;
-  
 }
 
 .allQuotes h6 {
