@@ -7,7 +7,7 @@ const dbUrl =
   process.env.MONGO_E +
   ":" +
   process.env.MONGO_P +
-  "@quotekeeper.ggozb.mongodb.net/quotekeeper?retryWrites=true&w=majority";
+  "@keeperofquotes.b4ekq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

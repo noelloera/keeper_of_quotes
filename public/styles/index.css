@@ -145,13 +145,13 @@ header {
     rgb(21, 143, 180) 1%,
     rgb(124, 225, 255) 100%
   );
-  margin-top: 40px;
   font-family: Arial;
   resize: vertical;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
+  height: 90vh;
 }
 
 form {
@@ -240,30 +240,37 @@ button {
   font-size: 1.25em;
   text-transform: uppercase;
 }
-
+.quoteContainer {
+  height: 45%;
+}
 .allQuotes {
+  height: 100%;
   display: flex;
   margin-top: 1em;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0.7em;
-  color: rgb(255, 255, 255);
   font-size: 1.7em;
   text-align: center;
+  background-color: #ffffff;
+  overflow: scroll;
+  cursor: pointer;
 }
-
 .allQuotes h1 {
   margin: 1em 0 0 0;
+  cursor: pointer;
 }
 
 .allQuotes h6 {
   font-size: 0.7em;
-  color: rgb(207, 207, 207);
+  color: rgb(129, 128, 128);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
   .application {
+    height: 80vh;
     width: 90%;
     margin-top: 5%;
   }
