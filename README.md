@@ -1,8 +1,8 @@
-# Quotekeeper
+# Keeper of Quotes
 
 ## Introduction
 
-This is a full-stack application which uses test driven development, which allows for the storage of quotes in a Mongo DB connected database. This application uses CRUD server principles.
+Full-stack application which allows for the storage of quotes in a Mongo DB connected database. This application uses CRUD server principles.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ This is a full-stack application which uses test driven development, which allow
 
 ## General Info
 
-Quotekeeper is an application that uses Javascript for front-end mobile responsive UI and Express.js REST API for MongoDB databaase queries. Provide routes for for rendering the client side static application as well as provides the routes for the storage and the update of existing data from MongoDB database.
+Keeper of Quotes uses HTML, CSS, and JavaScript for front-end mobile responsiveness and UI logic. Express.js powers the backend REST API along side mongoose for MongoDB queries. Provide routes for for rendering the client side static application as well as provides the routes for the storage and the update of existing data from MongoDB database.
 
 1. The server listens for calls made to PORT
 2. Upon root request "/" the server feeds the client static file
