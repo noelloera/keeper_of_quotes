@@ -4,10 +4,10 @@
   "description": "TDD application that stores quotes for users in a Mongo DB using CRUD server",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "chai-http": "^4.3.0",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "mongoose": "^5.13.9",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
